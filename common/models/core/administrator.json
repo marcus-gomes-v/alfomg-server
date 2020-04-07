@@ -1,0 +1,145 @@
+{
+  "name": "Administrator",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "DisableMethods": {
+      "expose": [
+        "dashboard",
+        "users",
+        "shows",
+        "venues"
+      ]
+    }
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "dashboard"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "users"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "shows"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "venues"
+    }
+  ],
+  "methods": {
+    "dashboard": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "object",
+          "root": true,
+          "description": "The information fror the pager"
+        }
+      ],
+      "description": "Get information from some page.",
+      "http": [
+        {
+          "verb": "GET"
+        }
+      ]
+    },
+    "users": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "object",
+          "root": true,
+          "description": "The information fror the pager"
+        }
+      ],
+      "description": "Get information from some page.",
+      "http": [
+        {
+          "verb": "GET"
+        }
+      ]
+    },
+    "shows": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "object",
+          "root": true,
+          "description": "The information fror the pager"
+        }
+      ],
+      "description": "Get information from some page.",
+      "http": [
+        {
+          "verb": "GET"
+        }
+      ]
+    },
+    "venues": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "object",
+          "root": true,
+          "description": "The information fror the pager"
+        }
+      ],
+      "description": "Get information from some page.",
+      "http": [
+        {
+          "verb": "GET"
+        }
+      ]
+    }
+  }
+}

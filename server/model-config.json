@@ -1,0 +1,113 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models/core",
+      "../common/models/pass",
+      "../common/models/templates",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "Customer": {
+    "dataSource": "mysqlDS",
+    "public": true
+  },
+  "CustomerAccessToken": {
+    "dataSource": "mysqlDS",
+    "public": false,
+    "relations": {
+      "user": {
+        "type": "belongsTo",
+        "model": "Customer",
+        "foreignKey": "userId"
+      }
+    }
+  },
+  "ACL": {
+    "dataSource": "mysqlDS",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "mysqlDS",
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
+  },
+  "Role": {
+    "dataSource": "mysqlDS",
+    "public": false
+  },
+  "Event": {
+    "dataSource": "mysqlDS",
+    "public": false
+  },
+  "Lecture": {
+    "dataSource": "mysqlDS",
+    "public": false
+  },
+  "Stand": {
+    "dataSource": "mysqlDS",
+    "public": false
+  },
+  "SendTemplate": {
+    "dataSource": null,
+    "public": false
+  },
+  "ValidateTemplate": {
+    "dataSource": null,
+    "public": false
+  },
+  "ScannedStand": {
+    "dataSource": "mysqlDS",
+    "public": false
+  },
+  "ScannedLecture": {
+    "dataSource": "mysqlDS",
+    "public": false
+  },
+  "Public": {
+    "dataSource": null,
+    "public": true
+  },
+  "Pass": {
+    "dataSource": null,
+    "public": true
+  },
+  "Venue": {
+    "dataSource": "mysqlDS",
+    "public": false
+  },
+  "Medias": {
+    "dataSource": null,
+    "public": false
+  },
+  "Presentations": {
+    "dataSource": null,
+    "public": false
+  },
+  "Price": {
+    "dataSource": null,
+    "public": false
+  },
+  "CustomerProfile": {
+    "dataSource": "mysqlDS",
+    "public": false
+  },
+  "Administrator": {
+    "dataSource": null,
+    "public": true
+  },
+  "Client": {
+    "dataSource": "mysqlDS",
+    "public": false
+  }
+}

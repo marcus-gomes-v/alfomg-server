@@ -1,0 +1,43 @@
+{
+  "name": "Client",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "strictObjectIDCoercion": true
+  },
+  "mixins": {
+    "DisableMethods": {
+      "expose": [
+        "create"
+      ]
+    }
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "bucket": {
+      "type": "string",
+      "required": true
+    },
+    "cloudfront": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "customer": {
+      "type": "hasMany",
+      "model": "Customer",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

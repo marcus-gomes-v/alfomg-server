@@ -1,0 +1,138 @@
+{
+  "name": "Public",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "DisableMethods": {
+      "expose": [
+        "events",
+        "categs"
+      ]
+    }
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "events"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "categs"
+    }
+  ],
+  "methods": {
+    "event": {
+      "accepts": [
+        {
+          "arg": "eventId",
+          "type": "number",
+          "description": "Id from some vent",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "result",
+          "type": "object",
+          "root": true,
+          "description": "Return event object."
+        }
+      ],
+      "description": "Get event by event id.",
+      "http": [
+        {
+          "verb": "GET"
+        }
+      ]
+    },
+    "events": {
+      "accepts": [
+        {
+          "arg": "likes",
+          "type": "string",
+          "description": "Data separated by comma with likes",
+          "http": {
+            "source": "query"
+          }
+        },
+        {
+          "arg": "lat",
+          "type": "string",
+          "description": "Latitude location",
+          "http": {
+            "source": "query"
+          }
+        },
+        {
+          "arg": "lng",
+          "type": "string",
+          "description": "Longitude location",
+          "http": {
+            "source": "query"
+          }
+        },
+        {
+          "arg": "distance",
+          "type": "number",
+          "description": "Distance in kilometers",
+          "http": {
+            "source": "query"
+          }
+        },
+        {
+          "arg": "category",
+          "type": "string",
+          "description": "Category preference",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "result",
+          "type": "object",
+          "root": true,
+          "description": "The collection with all events."
+        }
+      ],
+      "description": "Get collection of events.",
+      "http": [
+        {
+          "verb": "GET"
+        }
+      ]
+    },
+    "categs": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "result",
+          "type": "object",
+          "root": true,
+          "description": "The collection of categs."
+        }
+      ],
+      "description": "Get collection of categs.",
+      "http": [
+        {
+          "verb": "GET"
+        }
+      ]
+    }
+  }
+}

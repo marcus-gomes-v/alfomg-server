@@ -1,0 +1,54 @@
+{
+  "name": "Venue",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "hidden": [
+    "id",
+    "mnemonic",
+    "privateKey"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "locale": {
+      "type": "object",
+      "required": true
+    },
+    "medias": {
+      "type": [
+        "Medias"
+      ]
+    },
+    "mnemonic": {
+      "type": "string"
+    },
+    "publicKey": {
+      "type": "string"
+    },
+    "privateKey": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "date",
+      "required": true
+    },
+    "updatedat": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "customer": {
+      "type": "belongsTo",
+      "model": "Customer",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,11 @@
+{
+  "mysqlDS": {
+    "host": "localhost",
+    "port": 3306,
+    "database": "ArvisTAG",
+    "password": "DBroot13#",
+    "name": "mysqlDS",
+    "user": "root",
+    "connector": "mysql"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "ScannedLecture",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "CustomerPublicKey": {
+      "type": "string",
+      "required": true
+    },
+    "ScannedLectures": {
+      "type": [
+        "string"
+      ],
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "event": {
+      "type": "belongsTo",
+      "model": "Event",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

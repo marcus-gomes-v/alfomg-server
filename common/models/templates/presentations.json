@@ -1,0 +1,35 @@
+{
+  "name": "Presentations",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "hidden": [
+    "id"
+  ],
+  "properties": {
+    "next_date_time": {
+      "type": "number",
+      "required": true,
+      "default": 1579899600
+    },
+    "next_local_date_time": {
+      "type": "string",
+      "required": true,
+      "default": "missing"
+    },
+    "highest_price": {
+      "type": "Price",
+      "required": true
+    },
+    "lowest_price": {
+      "type": "Price",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

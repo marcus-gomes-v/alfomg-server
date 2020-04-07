@@ -1,0 +1,92 @@
+{
+  "name": "Event",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "indexes": {
+    "SEARCH_INDEX": {
+      "columns": "event_genre_name, event_category_name"
+    }
+  },
+  "hidden": [
+    "id",
+    "mnemonic",
+    "privateKey"
+  ],
+  "properties": {
+    "score": {
+      "type": "string"
+    },
+    "referenceId": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "event_category_name": {
+      "type": "string",
+      "required": true
+    },
+    "event_genre_name": {
+      "type": "string",
+      "required": true
+    },
+    "tags": {
+      "type": "object",
+      "required": true
+    },
+    "medias": {
+      "type": [
+        "Medias"
+      ],
+      "required": true
+    },
+    "presentations": {
+      "type": "Presentations",
+      "required": true
+    },
+    "mnemonic": {
+      "type": "string"
+    },
+    "publicKey": {
+      "type": "string"
+    },
+    "privateKey": {
+      "type": "string"
+    },
+    "location": {
+      "type": "geopoint"
+    },
+    "team": {
+      "type": [
+        "number"
+      ]
+    },
+    "createdAt": {
+      "type": "date",
+      "required": true
+    },
+    "updatedat": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "customer": {
+      "type": "belongsTo",
+      "model": "Customer",
+      "foreignKey": ""
+    },
+    "venue": {
+      "type": "belongsTo",
+      "model": "Venue",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

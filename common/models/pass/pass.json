@@ -1,0 +1,888 @@
+{
+  "name": "Pass",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+
+  "mixins": {
+    "DisableMethods": {
+      "expose": [
+        "validate",
+        "uploadFile",
+        "pageEvent",
+        "pageEventDetail",
+        "event",
+        "stand",
+        "lecture",
+        "eventInvite",
+        "standInvite",
+        "lectureInvite",
+        "events",
+        "stands",
+        "lectures",
+        "standsOwner",
+        "standOwner",
+        "standOwnerInviteTeam",
+        "lecturesOwner",
+        "lectureOwner",
+        "scanStand",
+        "scanLecture",
+        "eventsPublic",
+        "standsPublic",
+        "lecturesPublic",
+        "eventTeam",
+        "lectureDetailOwner",
+        "standDetailOwner"
+      ]
+    }
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "pageEvent"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "pageEventDetail"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "event"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "stand"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "lecture"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "eventInvite"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "standInvite"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "lectureInvite"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "events"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "stands"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "lectures"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "standsOwner"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "standOwner"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "standOwnerInviteTeam"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "lecturesOwner"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "lectureOwner"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "scanStand"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "scanLecture"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "eventsPublic"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "standsPublic"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "lecturesPublic"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "eventTeam"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "lectureDetailOwner"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "standDetailOwner"
+    }
+  ],
+  "methods": {
+    "pageEvent": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "return",
+          "type": "object",
+          "root": true,
+          "description": "The events from user"
+        }
+      ],
+      "description": "Get an collection of events from account.",
+      "http": [
+        {
+          "path": "/Page/events",
+          "verb": "GET"
+        }
+      ]
+    },
+    "pageEventDetail": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        },
+        {
+          "arg": "eventId",
+          "type": "string",
+          "description": "The id from event.",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "return",
+          "type": "object",
+          "root": true,
+          "description": "The event data."
+        }
+      ],
+      "description": "Get data from event.",
+      "http": [
+        {
+          "path": "/Page/event/detail",
+          "verb": "GET"
+        }
+      ]
+    },
+    "eventInvite": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        },
+        {
+          "arg": "data",
+          "type": "object",
+          "description": "The data contains invited staff data.",
+          "http": {
+            "source": "body"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "object",
+          "root": true,
+          "description": "The invited staff data."
+        }
+      ],
+      "description": "Create new event invite for staff.",
+      "http": [
+        {
+          "path": "/staff/event/invite/team",
+          "verb": "POST"
+        }
+      ]
+    },
+    "eventTeam": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        },
+        {
+          "arg": "eventId",
+          "type": "string",
+          "description": "The id from event.",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "object",
+          "root": true,
+          "description": "The invited staff list."
+        }
+      ],
+      "description": "Get event staff team.",
+      "http": [
+        {
+          "path": "/staff/event/team",
+          "verb": "GET"
+        }
+      ]
+    },
+    "stand": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        },
+        {
+          "arg": "data",
+          "type": "Stand",
+          "description": "The data contain all stand data.",
+          "http": {
+            "source": "body"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "object",
+          "root": true,
+          "description": "The created stand data."
+        }
+      ],
+      "description": "Create new stand for event.",
+      "http": [
+        {
+          "path": "/staff/stand",
+          "verb": "POST"
+        }
+      ]
+    },
+    "standInvite": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        },
+        {
+          "arg": "data",
+          "type": "object",
+          "description": "The data contains invited team data.",
+          "http": {
+            "source": "body"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "object",
+          "root": true,
+          "description": "The invited team data."
+        }
+      ],
+      "description": "Create new invite for stand team.",
+      "http": [
+        {
+          "path": "/staff/stand/invite/owner",
+          "verb": "POST"
+        }
+      ]
+    },
+    "lecture": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        },
+        {
+          "arg": "data",
+          "type": "Lecture",
+          "description": "The data contain all lecture data.",
+          "http": {
+            "source": "body"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "object",
+          "root": true,
+          "description": "The created lecture data."
+        }
+      ],
+      "description": "Create new lecture for event.",
+      "http": [
+        {
+          "path": "/staff/lecture",
+          "verb": "POST"
+        }
+      ]
+    },
+    "lectureInvite": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        },
+        {
+          "arg": "data",
+          "type": "object",
+          "description": "The data contains invited speaker data.",
+          "http": {
+            "source": "body"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "object",
+          "root": true,
+          "description": "The invited speaker data."
+        }
+      ],
+      "description": "Create new invite for lecture speaker.",
+      "http": [
+        {
+          "path": "/staff/lecture/invite/speaker",
+          "verb": "POST"
+        }
+      ]
+    },
+    "stands": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        },
+        {
+          "arg": "eventId",
+          "type": "number",
+          "description": "The id from some event.",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "stands",
+          "type": "object",
+          "root": true,
+          "description": "The list of stands from user event"
+        }
+      ],
+      "description": "Get the list of stands.",
+      "http": [
+        {
+          "path": "/staff/stand/list",
+          "verb": "GET"
+        }
+      ]
+    },
+    "lectures": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        },
+        {
+          "arg": "eventId",
+          "type": "number",
+          "description": "The id from some event.",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "lectures",
+          "type": "object",
+          "root": true,
+          "description": "The list of lectures from user event"
+        }
+      ],
+      "description": "Get the list of lectures.",
+      "http": [
+        {
+          "path": "/staff/lecture/list",
+          "verb": "GET"
+        }
+      ]
+    },
+    "standsOwner": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "stands",
+          "type": "object",
+          "root": true,
+          "description": "The list of stands from user event"
+        }
+      ],
+      "description": "List child stands from some user.",
+      "http": [
+        {
+          "path": "/owner/stand/list",
+          "verb": "GET"
+        }
+      ]
+    },
+    "standDetailOwner": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        },
+        {
+          "arg": "standId",
+          "type": "string",
+          "description": "The id from some stand.",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "stands",
+          "type": "object",
+          "root": true,
+          "description": "The details from some stand"
+        }
+      ],
+      "description": "Detail from some stand.",
+      "http": [
+        {
+          "path": "/owner/stand/detail",
+          "verb": "GET"
+        }
+      ]
+    },
+    "standOwner": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        },
+        {
+          "arg": "data",
+          "type": "Stand",
+          "description": "The stand data do update.",
+          "http": {
+            "source": "body"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "object",
+          "root": true,
+          "description": "Ther result from updated stand data."
+        }
+      ],
+      "description": "Update stand information.",
+      "http": [
+        {
+          "path": "/owner/stand",
+          "verb": "POST"
+        }
+      ]
+    },
+    "standOwnerInviteTeam": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        },
+        {
+          "arg": "data",
+          "type": "object",
+          "description": "The data contains invited team data.",
+          "http": {
+            "source": "body"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "object",
+          "root": true,
+          "description": "The invited team data."
+        }
+      ],
+      "description": "Invite team to stand.",
+      "http": [
+        {
+          "path": "/owner/stand/invite/team",
+          "verb": "POST"
+        }
+      ]
+    },
+    "lecturesOwner": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "lectures",
+          "type": "object",
+          "root": true,
+          "description": "The list of lectures from user event"
+        }
+      ],
+      "description": "List child lectures from some user.",
+      "http": [
+        {
+          "path": "/owner/lecture/list",
+          "verb": "GET"
+        }
+      ]
+    },
+    "lectureDetailOwner": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        },
+        {
+          "arg": "lectureId",
+          "type": "string",
+          "description": "The id from some lecture.",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "lectures",
+          "type": "object",
+          "root": true,
+          "description": "The details from some lecture"
+        }
+      ],
+      "description": "List child lectures from some user.",
+      "http": [
+        {
+          "path": "/owner/lecture/detail",
+          "verb": "GET"
+        }
+      ]
+    },
+    "lectureOwner": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        },
+        {
+          "arg": "data",
+          "type": "Lecture",
+          "description": "The lecture data do update.",
+          "http": {
+            "source": "body"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "object",
+          "root": true,
+          "description": "Ther result from updated lecture data."
+        }
+      ],
+      "description": "Update lecture information.",
+      "http": [
+        {
+          "path": "/owner/lecture",
+          "verb": "POST"
+        }
+      ]
+    },
+    "scanStand": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        },
+        {
+          "arg": "publicKey",
+          "type": "string",
+          "description": "The public key from some stand.",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "result",
+          "type": "object",
+          "root": true,
+          "description": "The result from scanned stand."
+        }
+      ],
+      "description": "Scan to record visit to stand.",
+      "http": [
+        {
+          "path": "/visitor/stand/scan",
+          "verb": "GET"
+        }
+      ]
+    },
+    "scanLecture": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        },
+        {
+          "arg": "publicKey",
+          "type": "string",
+          "description": "The public key from some stand.",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "lectures",
+          "type": "object",
+          "root": true,
+          "description": "The result from scanned lecture."
+        }
+      ],
+      "description": "Scan to record visit to lecture.",
+      "http": [
+        {
+          "path": "/visitor/lecture/scan",
+          "verb": "GET"
+        }
+      ]
+    },
+    "eventsPublic": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "events",
+          "type": "object",
+          "root": true,
+          "description": "The list of events from user"
+        }
+      ],
+      "description": "List events.",
+      "http": [
+        {
+          "path": "/public/event/list",
+          "verb": "GET"
+        }
+      ]
+    },
+    "standsPublic": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        },
+        {
+          "arg": "eventId",
+          "type": "number",
+          "description": "The id from some event.",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "stands",
+          "type": "object",
+          "root": true,
+          "description": "The list of stands from user event"
+        }
+      ],
+      "description": "List user stands.",
+      "http": [
+        {
+          "path": "/visitor/stand/list",
+          "verb": "GET"
+        }
+      ]
+    },
+    "lecturesPublic": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        },
+        {
+          "arg": "eventId",
+          "type": "number",
+          "description": "The id from some event.",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "lectures",
+          "type": "object",
+          "root": true,
+          "description": "The list of lectures from user event"
+        }
+      ],
+      "description": "List of lectures.",
+      "http": [
+        {
+          "path": "/visitor/lecture/list",
+          "verb": "GET"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "Medias",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "hidden": [
+    "id"
+  ],
+  "properties": {
+    "aspect_ratio": {
+      "type": "string",
+      "required": true,
+      "default": "16:9"
+    },
+    "rel": {
+      "type": "string",
+      "required": true,
+      "default": "profile"
+    },
+    "type": {
+      "type": "string",
+      "required": true,
+      "default": "jpeg"
+    },
+    "url": {
+      "type": "string",
+      "required": true,
+      "default": "https://likeshows.com/assets/img/logo.jpeg"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
