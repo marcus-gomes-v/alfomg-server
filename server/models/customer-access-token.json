@@ -1,0 +1,17 @@
+{
+  "name": "CustomerAccessToken",
+  "base": "AccessToken",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "customField": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

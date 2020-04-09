@@ -1,0 +1,212 @@
+{
+  "name": "Customer",
+  "base": "User",
+  "idInjection": true,
+  "indexes": {
+    "SEARCH_INDEX": {
+      "columns": "verificationToken"
+    }
+  },
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "DisableMethods": {
+      "expose": [
+        "infs",
+        "create",
+        "login",
+        "logout",
+        "send",
+        "balance",
+        "validate",
+        "uploadFile"
+      ]
+    }
+  },
+  "hidden": [
+    "id",
+    "privateKey",
+    "encryptedKey",
+    "mnemonic",
+    "realm",
+    "verificationToken",
+    "emailVerified",
+    "iuguClientId"
+  ],
+  "properties": {
+    "publicKey": {
+      "type": "string",
+      "required": true
+    },
+    "privateKey": {
+      "type": "string",
+      "required": true
+    },
+    "mnemonic": {
+      "type": "string",
+      "required": true
+    },
+    "createdAt": {
+      "type": "date",
+      "required": true
+    },
+    "updatedat": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "CustomerProperty": {
+      "type": "hasMany",
+      "model": "CustomerProperty",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "infs"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "balance"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "send"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "uploadFile"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "ALLOW",
+      "property": "validate"
+    }
+  ],
+  "methods": {  
+    "infs": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "object",
+          "root": true,
+          "description": "The information about user"
+        }
+      ],
+      "description": "Get Details from user.",
+      "http": [
+        {
+          "path": "/details",
+          "verb": "GET"
+        }
+      ]
+    },
+    "balance": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "balance",
+          "type": "object",
+          "root": true,
+          "description": "The balance from eth network"
+        }
+      ],
+      "description": "Get balance from ethereum wallet.",
+      "http": [
+        {
+          "path": "/blockchain/balance",
+          "verb": "GET"
+        }
+      ]
+    },
+    "send": {
+      "accepts": [
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        },
+        {
+          "arg": "data",
+          "type": "SendTemplate",
+          "description": "The data contains the publicKey and amount to send the ethers to other user",
+          "http": {
+            "source": "body"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "txHash",
+          "type": "string",
+          "root": true,
+          "description": "The transaction hash from sended ethers"
+        }
+      ],
+      "description": "Sent ethereum from some account to another.",
+      "http": [
+        {
+          "path": "/blockchain/send",
+          "verb": "POST"
+        }
+      ]
+    },
+    "validate": {
+      "accepts": [
+        {
+          "arg": "data",
+          "type": "ValidateTemplate",
+          "description": "Data to validate user account",
+          "http": {
+            "source": "body"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "result",
+          "type": "string",
+          "root": true,
+          "description": "The result from validation try"
+        }
+      ],
+      "description": "Validate user from some token invitation.",
+      "http": [
+        {
+          "path": "/validate",
+          "verb": "POST"
+        }
+      ]
+    }
+  }
+}

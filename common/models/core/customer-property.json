@@ -1,0 +1,28 @@
+{
+  "name": "CustomerProperty",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "key": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "object",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "Customer": {
+      "type": "belongsTo",
+      "model": "Customer",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
